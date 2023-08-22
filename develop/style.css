@@ -2,6 +2,15 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
   }
+
+  #currentDay {
+    font-weight: bold;
+    margin-top: 50px;
+  }
+
+  #currentTime {
+    font-weight: bold;
+  }
   
   textarea {
     background: transparent;

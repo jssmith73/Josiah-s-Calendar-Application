@@ -2,10 +2,13 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-var date = $("#currentDay");
-var dayJsObject = dayJs();
+$(document).ready (function() {
+    var currentDate = dayjs().format("MMM DD, YYYY");
+    $("#currentDay").text(currentDate);
 
-date.text = daysJsObject.format("MMM/DD/YYYY");
+    var currentTime = dayjs().format("h:mm A");
+    $("#currentTime").text(currentTime);
+});
 
 
 
