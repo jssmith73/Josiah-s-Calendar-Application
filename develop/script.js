@@ -2,6 +2,8 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
+//Displays the current day and time at the top of the page.
+
 $(document).ready (function() {
     var currentDate = dayjs().format("MMM DD, YYYY");
     $("#currentDay").text(currentDate);
@@ -10,7 +12,33 @@ $(document).ready (function() {
     $("#currentTime").text(currentTime);
 });
 
+//Defines the current hour and compares it to each div time block
 
+function setHour () {
+    var currentHour = dayjs().format("H");
+    console.log(currentHour);
+
+    $(".time-block").each(function() {
+        var divHour = parseInt($(this).attr("id"));
+
+        console.log(divHour);
+
+        if (divHour < currentHour) {
+            $(this).addClass("past");
+            //"==" is the loose equality operator that peforms 'type coercion', the process of automatically converting one value to another in order to make the two values equal in type as well as value.
+        } else if (divHour == currentHour) {
+            $(this).removeClass("past");
+            $(this).addClass("present");
+        } else {
+            $(this).removeClass("past");
+            $(this).removeClass("present");
+            $(this).addClass("future");
+        }
+    })
+
+}
+
+setHour();
 
 $(function () {
     $(".saveBtn").on("click", function() {
@@ -28,11 +56,6 @@ $(function () {
     })
 
     })
-
-
-    var dayJsObject = dayjs();
-
-    console.log(dayJsObject.format("MMM/DD/YYYY"));
 
 
     // TODO: Add a listener for click events on the save button. This code should
