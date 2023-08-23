@@ -1,6 +1,3 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 
 //Displays the current day and time at the top of the page.
 
@@ -12,7 +9,18 @@ $(document).ready (function() {
     $("#currentTime").text(currentTime);
 });
 
-//Defines the current hour and compares it to each div time block
+//Button that clears previous entries to local storage.
+
+var clearButton = $(".clear");
+var clearMessage = $(".clearMsg");
+$(".clearMsg").css({"margin-top": "25px", "font-weight": "bold"});
+
+clearButton.on("click", function() {
+localStorage.clear();
+clearMessage.text("Events Cleared. Refresh Page.");
+});
+
+//Defines the current hour and compares it to each div time block. It then assigns the blocks to a past, present, or future class which in turn changes the block to the corresponding background-color.
 
 function setHour () {
     var currentHour = dayjs().format("H");
@@ -40,29 +48,38 @@ function setHour () {
 
 setHour();
 
-$(function () {
-    $(".saveBtn").on("click", function() {
-        var time = $(this).siblings(".description").val();
-        var time = $(this).parent().attr("id");
-        
-        localStorage.setItem(time, value)
-        
-        
-        function currentTime () {
-            var date = dayjs().format(YYYY-MM-DD);
-            $()
-        }
-        
-    })
+//Button that saves entered event
 
-    })
+var saveEventButton = $(".saveBtn");
+saveEventButton.on("click", function() {
+
+    var event = $(this).parent().attr("id");
+
+    var value = $(this).siblings(".description").val();
+
+        saveEventButton.on("click", function() {
+            localStorage.setItem(event, value);
+        })    
+});
+
+//Recieves the stored values inside of local storage and displays them in the corresponding blocks.
+
+$("#9 .description").val(localStorage.getItem("9"));
+$("#10 .description").val(localStorage.getItem("10"));
+$("#11 .description").val(localStorage.getItem("11"));
+$("#12 .description").val(localStorage.getItem("12"));
+$("#13 .description").val(localStorage.getItem("13"));
+$("#14 .description").val(localStorage.getItem("14"));
+$("#15 .description").val(localStorage.getItem("15"));
+$("#16 .description").val(localStorage.getItem("16"));
+$("#17 .description").val(localStorage.getItem("17"));
 
 
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
     // local storage. HINT: What does `this` reference in the click listener
     // function? How can DOM traversal be used to get the "hour-x" id of the
-    // time-block containing the button that was clicked? How might the id be
+    // time-block containing th)e button that was clicked? How might the id be
     // useful when saving the description in local storage?
     //
     // TODO: Add code to apply the past, present, or future class to each time
@@ -77,4 +94,4 @@ $(function () {
     //
     // TODO: Add code to display the current date in the header of the page.
   
-  
+  6013
