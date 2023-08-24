@@ -60,17 +60,15 @@ saveEventButton.on("click", function() {
 
     var value = $(this).siblings(".description").val();
 
-    //Displays a message to user that event is saved or that they need to enter an event to save.
-
-        saveEventButton.on("click", function() {
-            if (value !== "") {
+//Saves event and displays "Event Saved!" for five seconds upon clicking the save button.
             localStorage.setItem(event, value);
-            function () {
-            savedEventMessage.text("Event Saved!").addClass("show")
-        } else {
-            savedEventMessage.text("Must enter an event to save.")
-        }})   
-});
+            savedEventMessage.removeClass("saveMsg");
+            savedEventMessage.addClass("show");
+            setTimeout(function() {
+            savedEventMessage.removeClass("show");
+            savedEventMessage.addClass("saveMsg");
+        },5000)
+    });
 
 //Recieves the stored values inside of local storage and displays them in the corresponding blocks.
 
